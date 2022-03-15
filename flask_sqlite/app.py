@@ -1,11 +1,13 @@
 from flask import Flask
 from flask_restful import Api
 from flask_jwt_extended import JWTManager
-from user import User, Auth, UserRegister
+from user import Auth, UserRegister
 from item import Items, ItemList
+from datetime import timedelta
 
 app = Flask(__name__)
 app.config["JWT_SECRET_KEY"] = "smsrn123"  # Change this!
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(minutes=5)
 # app.secret_key = 'smsrn123'
 api = Api(app)
 

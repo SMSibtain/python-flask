@@ -1,6 +1,6 @@
 from multiprocessing import connection
 import sqlite3
-
+from flask import jsonify
 from flask_restful import Resource, request, reqparse
 from flask_jwt_extended import create_access_token
 
@@ -54,7 +54,7 @@ class Auth(Resource):
         # user = authenticate(username, password)
         if user is not None and user.password == password:
             access_token = create_access_token(identity=username)
-            return {'access_token': access_token}
+            return {'access_token': access_token, "msg": "Log in successful"}
         return {"msg": "Bad username or password"}, 401
 
 
